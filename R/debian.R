@@ -35,7 +35,7 @@ debian_add_swap <- function(droplet) {
 debian_install_r <- function(droplet) {
   droplet %>%
     debian_apt_get_install("r-base", "r-base-dev") %>%
-    droplet_ssh('echo "options(repos=c(\'http://cran.rstudio.com/\'))" > .Rprofile')
+    droplet_ssh('echo "options(repos=c(\'https://cran.rstudio.com/\'))" > .Rprofile')
 }
 
 #' @rdname debian
@@ -105,7 +105,7 @@ debian_apt_get_install <- function(droplet, ...) {
 #' @export
 #' @param package Name of R package to install.
 #' @param repo CRAN mirror to use.
-install_r_package <- function(droplet, package, repo = "http://cran.rstudio.com") {
+install_r_package <- function(droplet, package, repo = "https://cran.rstudio.com") {
   droplet_ssh(droplet,
     sprintf("Rscript -e \"install.packages(\'%s\', repos=\'%s/\')\"", package, repo)
   )
